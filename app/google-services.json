@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116193922649",
+    "project_id": "app-final-project-a99bc",
+    "storage_bucket": "app-final-project-a99bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116193922649:android:c2ff43e21a5d1d2cd06b48",
+        "android_client_info": {
+          "package_name": "com.ncueel.finalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJXKfjzuzLd3o6MwPSf0gP1u8oXUy01uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
