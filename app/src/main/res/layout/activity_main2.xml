@@ -99,7 +99,7 @@
     <Button
         android:id="@+id/button3"
         android:layout_width="122dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:text="清除重填"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -113,7 +113,7 @@
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="30dp"
         android:ems="10"
         android:inputType="text"
@@ -125,7 +125,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="text|textPassword"
@@ -137,7 +137,7 @@
     <EditText
         android:id="@+id/verifyPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="text|textPassword"
