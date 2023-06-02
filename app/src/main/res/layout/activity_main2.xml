@@ -26,10 +26,11 @@
         android:layout_height="50dp"
         android:layout_marginBottom="356dp"
         android:ems="10"
-        android:inputType="text|textEmailAddress"
         android:hint="E-mail"
+        android:inputType="text|textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="70dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/phone"
@@ -37,10 +38,11 @@
         android:layout_height="50dp"
         android:layout_marginBottom="25dp"
         android:ems="10"
-        android:inputType="phone"
         android:hint="手機號碼"
+        android:inputType="phone"
         app:layout_constraintBottom_toTopOf="@+id/email"
-        tools:layout_editor_absoluteX="70dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/personID"
@@ -48,10 +50,11 @@
         android:layout_height="50dp"
         android:layout_marginBottom="25dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="身分證字號"
+        android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/phone"
-        tools:layout_editor_absoluteX="70dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
