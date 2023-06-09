@@ -9,52 +9,18 @@
 
 
     <EditText
-        android:id="@+id/name"
-        android:layout_width="273dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="25dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="姓名"
-        app:layout_constraintBottom_toTopOf="@+id/personID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
         android:id="@+id/email"
         android:layout_width="273dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="356dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="568dp"
         android:ems="10"
         android:hint="E-mail"
         android:inputType="text|textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="273dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="25dp"
-        android:ems="10"
-        android:hint="手機號碼"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/personID"
-        android:layout_width="273dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="25dp"
-        android:ems="10"
-        android:hint="身分證字號"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView3"
@@ -65,84 +31,42 @@
         android:textColor="#66009D"
         android:textSize="35dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/checkProtocol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
-        android:text="同意使用者條款"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verifyPassword" />
-
     <Button
         android:id="@+id/button4"
-        android:layout_width="121dp"
+        android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="80dp"
-        android:text="確認註冊"
+        android:layout_marginStart="146dp"
+        android:layout_marginEnd="144dp"
         android:backgroundTint="@color/first"
+        android:text="確認註冊"
         android:textColor="@color/black"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="122dp"
-        android:layout_height="48dp"
-        android:text="清除重填"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="0.782"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.926" />
-
-    <EditText
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="設定帳號"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintVertical_bias="0.453" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="59dp"
         android:ems="10"
-        android:inputType="text|textPassword"
         android:hint="設定密碼"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
-
-    <EditText
-        android:id="@+id/verifyPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
         android:inputType="text|textPassword"
-        android:hint="確認密碼"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

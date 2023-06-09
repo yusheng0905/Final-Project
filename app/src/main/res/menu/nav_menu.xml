@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@color/first"
+        android:icon="@drawable/baseline_home_24"
         android:title="HOME" />
     <item
         android:id="@+id/cartFragment"
-        android:icon="@color/second"
+        android:icon="@drawable/baseline_shopping_cart_24"
         android:title="CART" />
     <item
         android:id="@+id/memberFragment"
-        android:icon="@color/third"
+        android:icon="@drawable/baseline_person_24"
         android:title="MEMBER" />
 </menu>
