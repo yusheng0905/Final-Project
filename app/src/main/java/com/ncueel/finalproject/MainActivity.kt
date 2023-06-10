@@ -4,19 +4,32 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.ktx.firestore
 import com.ncueel.finalproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     //Step 1: 初始化FirebaseAuth
     private lateinit var auth: FirebaseAuth
-
     //Step 1:先從註冊這個功能開始寫->先初始化一個資料鏈結的部分
     private lateinit var binding: ActivityMainBinding
+
+
+    private lateinit var name:EditText
+    private lateinit var price:EditText
+    private lateinit var number:EditText
+    private lateinit var savebtn: Button
+
+    //取得Cloud Firestore物件
+    private var db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,7 +57,42 @@ class MainActivity : AppCompatActivity() {
                 signIn()
             }
         }
+
+        //
+        name = findViewById(R.id.editTextText2)
+        price = findViewById(R.id.editTextText3)
+        number = findViewById(R.id.editTextText4)
+        savebtn = findViewById(R.id.button5)
+
+        savebtn.setOnClickListener {
+            //刪除前後空格
+            val sName = name.text.toString().trim()
+            val sPrice = price.text.toString().trim()
+            val sNumber = number.text.toString().trim()
+
+            val goodsMap = hashMapOf(
+                "name" to sName,
+                "price" to sPrice,
+                "number" to sNumber
+            )
+            //get uid
+            //val goodsId = FirebaseAuth.getInstance().currentUser!!.uid
+
+            db.collection("goods").document("0001").set(goodsMap)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "successfully added", Toast.LENGTH_SHORT).show()
+                    name.text.clear()
+                    price.text.clear()
+                    number.text.clear()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                }
+
+        }
+
     }
+
     //Step 3-2: 設計登入的button->寫一個登入認證失敗的判斷式
     private fun signIn() {
         val email = binding.editTextText.text.toString()
@@ -94,4 +142,8 @@ class MainActivity : AppCompatActivity() {
         alertDialog.setPositiveButton("確定") { dialog, which -> }
         alertDialog.show()
     }
+
+
+
+
 }

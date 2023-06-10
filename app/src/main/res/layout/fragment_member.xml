@@ -23,7 +23,8 @@
             android:text="登出"
             android:textSize="20sp"
             android:backgroundTint="@color/second"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:onClick="buttonClicked"/>
     </LinearLayout>
 
 </FrameLayout>
