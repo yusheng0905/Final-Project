@@ -14,7 +14,6 @@ import com.ncueel.finalproject.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     //Step 1: 初始化FirebaseAuth
     private lateinit var auth: FirebaseAuth
-
     //Step 1:先從註冊這個功能開始寫->先初始化一個資料鏈結的部分
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
