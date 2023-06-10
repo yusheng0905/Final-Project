@@ -48,7 +48,7 @@ class memberFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Step 4: 設計logout button功能
+        //設計logout button功能
         val logout = view.findViewById<Button>(R.id.button3)
         logout.setOnClickListener {
             auth.signOut()
