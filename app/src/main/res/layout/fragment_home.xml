@@ -28,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_below="@+id/textView2"
-            android:layout_marginTop="2dp"
             app:iss_auto_cycle="true"
             app:iss_delay="0"
             app:iss_period="2000"
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="800dp"
             android:layout_below="@+id/imageSlider"
-            android:layout_marginTop="0dp"
             android:nestedScrollingEnabled="true"
             android:numColumns="2" />
     </RelativeLayout>

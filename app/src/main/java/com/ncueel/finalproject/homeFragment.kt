@@ -59,7 +59,9 @@ class homeFragment : Fragment() {
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
 
         //gridView商品
-        val goodsNames = arrayOf("111", "222", "333", "444", "555")
+        val goodsNames = arrayOf("Itsukushima", "Kyoto", "Mount Fuji", "Okinawa", "Sensoji Temple")
+
+        val goodsPrices = arrayOf("50", "51", "52", "53", "54")
 
         val goodsImageIds = arrayOf(R.drawable.itsukushima, R.drawable.kyoto, R.drawable.mount_fuji, R.drawable.okinawa, R.drawable.sensoji_temple)
 
@@ -68,11 +70,12 @@ class homeFragment : Fragment() {
         for(i in goodsNames.indices) {
             val map = HashMap<String, Any>()
             map["goodsName"] = goodsNames[i]
+            map["goodsPrice"] = "$${goodsPrices[i]}"
             map["goodsImage"] = goodsImageIds[i]
             grid.add(map)
         }
-        val fromData = arrayOf("goodsName", "goodsImage")
-        val toData = intArrayOf(R.id.textView6, R.id.imageView)
+        val fromData = arrayOf("goodsName", "goodsPrice", "goodsImage")
+        val toData = intArrayOf(R.id.textView6, R.id.textView10, R.id.imageView)
         val simpleAdapter = SimpleAdapter(requireContext(), grid, R.layout.grid_row_items_home, fromData, toData)
         gridView.adapter = simpleAdapter
         gridView.setOnItemClickListener { _, _, i, _ ->
