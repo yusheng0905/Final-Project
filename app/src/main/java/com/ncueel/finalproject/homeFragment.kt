@@ -48,7 +48,13 @@ class homeFragment : Fragment() {
         //ImageSlider
         val imageSlider = view.findViewById<ImageSlider>(R.id.imageSlider)
         val imageList = ArrayList<SlideModel>()
-        imageList.add(SlideModel(R.drawable.background))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/4_1_20230609144422.jpg"))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/3_1_20230609144422.jpg"))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/5_1_20230609144422.jpg"))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/6_1_20230609144423.jpg"))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/7_1_20230609112158.jpg"))
+        imageList.add(SlideModel("https://fs-a.ecimg.tw/img/h24/v2/layout/index/hero/0647ef8629d69c647ef8629d6eeecman2/10_1_20230609112159.jpg"))
+        //imageList.add(SlideModel(""))
 
         imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
 
@@ -66,7 +72,7 @@ class homeFragment : Fragment() {
             grid.add(map)
         }
         val fromData = arrayOf("goodsName", "goodsImage")
-        val toData = intArrayOf(R.id.imageView, R.id.textView6)
+        val toData = intArrayOf(R.id.textView6, R.id.imageView)
         val simpleAdapter = SimpleAdapter(requireContext(), grid, R.layout.grid_row_items_home, fromData, toData)
         gridView.adapter = simpleAdapter
         gridView.setOnItemClickListener { _, _, i, _ ->
