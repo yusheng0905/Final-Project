@@ -56,8 +56,8 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="273dp"
+        android:layout_height="50dp"
         android:layout_marginTop="38dp"
         android:layout_marginBottom="59dp"
         android:ems="10"

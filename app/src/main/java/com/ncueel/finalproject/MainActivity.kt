@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageSwitcher
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -13,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.ncueel.finalproject.databinding.ActivityMainBinding
 
@@ -34,12 +38,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var getnumber:TextView
     private lateinit var getbtn: Button
 
+    //Retrieve Image
+    private lateinit var getimage:ImageView
+    private lateinit var databaseReference: DatabaseReference
+
     //取得Cloud Firestore物件
     private var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         //** Step 2: 去設定我們要去啟動的RegisterActivity **
         //Step 2-1: 初始化FirebaseAuth->初始化auth
@@ -77,52 +86,75 @@ class MainActivity : AppCompatActivity() {
         getprice = findViewById(R.id.textView9)
         getbtn = findViewById(R.id.button6)
 
-        savebtn.setOnClickListener {
-            //刪除前後空格
-            val sName = name.text.toString().trim()
-            val sPrice = price.text.toString().trim()
-            val sNumber = number.text.toString().trim()
 
-            val goodsMap = hashMapOf(
-                "name" to sName,
-                "price" to sPrice,
-                "number" to sNumber
-            )
+        //呼叫class DBhelper,連接資料庫 儲存資料
+        savebtn.setOnClickListener {
+            val aa = DBhelper(this)
+            aa.save(name,price,number)
+
+            //刪除前後空格
+//            val sName = name.text.toString().trim()
+//            val sPrice = price.text.toString().trim()
+//            val sNumber = number.text.toString().trim()
+
+//            val goodsMap = hashMapOf(
+//                "name" to sName,
+//                "price" to sPrice,
+//                "number" to sNumber
+//            )
             //get uid
             //val goodsId = FirebaseAuth.getInstance().currentUser!!.uid
 
-            db.collection("goods").document("0001").set(goodsMap)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "successfully added", Toast.LENGTH_SHORT).show()
-                    name.text.clear()
-                    price.text.clear()
-                    number.text.clear()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
-                }
-
+//            db.collection("goods").document("0001").set(goodsMap)
+//                .addOnSuccessListener {
+//                    Toast.makeText(this, "successfully added", Toast.LENGTH_SHORT).show()
+//                    name.text.clear()
+//                    price.text.clear()
+//                    number.text.clear()
+//                }
+//                .addOnFailureListener {
+//                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+//                }
         }
 
         //
-        var db_doc = "0001"
-        getbtn.setOnClickListener {
-            val getRef = db.collection("goods").document(db_doc)
-            getRef.get().addOnSuccessListener {
-                if (it != null) {
-                    val name = it.data?.get("name").toString()
-                    val price = it.data?.get("price").toString()
-                    val number = it.data?.get("number").toString()
 
-                    getname.text = name
-                    getprice.text = price
-                    getnumber.text = number
-                }
-            }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
-                }
+        getbtn.setOnClickListener {
+            val bb = DBhelper(this)
+            //getdb(type)  type:1=name,2=price,3=number
+            getname.text = bb.getdb(1)
+//            getprice.text = bb.get(2)
+//            getnumber.text = bb.get(3)
+
+//            val getRef = db.collection("test").document("0001")
+//            getRef.get().addOnSuccessListener {
+//                if (it != null) {
+//                    val name = it.data?.get("name").toString()
+//                    val price = it.data?.get("price").toString()
+//                    val number = it.data?.get("number").toString()
+//
+//                    getname.text = name
+//                    getprice.text = price
+//                    getnumber.text = number
+//                }
+//            }
+//                .addOnFailureListener {
+//                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+//                }
         }
+
+        //display image from db
+//        getimage = findViewById(R.id.imageView2)
+//        databaseReference = FirebaseDatabase.getInstance().getReference("userImages")
+//            .child()
+
+//        var textView11 = findViewById<TextView>(R.id.textView11)
+//        val button7 = findViewById<Button>(R.id.button7)
+//
+//        val dbdb = DBhelper()
+//        button7.setOnClickListener {
+//            textView11.text = dbdb.save("adam").toString()
+//        }
     }
 
     //Step 3-2: 設計登入的button->寫一個登入認證失敗的判斷式
