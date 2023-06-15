@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var upobject:EditText
     private lateinit var updatebtn:Button
 
+    //delete variable
+    private lateinit var deletebtn:Button
+
     //Retrieve Image
     private lateinit var getimage:ImageView
     private lateinit var databaseReference: DatabaseReference
@@ -159,6 +162,14 @@ class MainActivity : AppCompatActivity() {
             val up = DBhelper(this)
             up.update("number",upobject,"0001")
         }
+
+        //delete cart pid
+        deletebtn = findViewById(R.id.button11)
+        deletebtn.setOnClickListener{
+            val del = DBhelper(this)
+            del.deleteCart("test","pid3")
+        }
+
 
 
         //display image from db
