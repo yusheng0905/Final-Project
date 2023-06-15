@@ -129,7 +129,7 @@ class homeFragment : Fragment() {
 
                 if (goodsNumbers[i].toInt() == 0){
                     addToCart?.isEnabled = false
-                    //addToCart?.back
+                    addToCart?.text = "缺貨中"
                 }
 
                 addToCart?.setOnClickListener {
