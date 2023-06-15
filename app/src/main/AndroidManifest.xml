@@ -15,6 +15,15 @@
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivityMemberInfo"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityChangePW"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityOrders"
+            android:exported="false" />
+        <activity
             android:name=".DBhelper"
             android:exported="false" />
         <activity

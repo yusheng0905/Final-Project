@@ -198,6 +198,7 @@ class MainActivity : AppCompatActivity() {
                     println("---------signInWithEmail:success-----------")
                     val user = auth.currentUser
                     updateUI(user)
+                    startActivity(Intent(this,MainActivity_Home::class.java))
                 } else {
                     it.exception?.message?.let {  }
                     println("---------error---------------")
@@ -205,7 +206,6 @@ class MainActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
-        startActivity(Intent(this,MainActivity_Home::class.java))
     }
 
     //Step 6: 確認更新登入的user狀況
