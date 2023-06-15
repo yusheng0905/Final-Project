@@ -53,7 +53,7 @@ class CustomAdapter(private val context: Context, private val data: ArrayList<St
         return view
     }
 
-    private class ViewHolder {
+    class ViewHolder {
         var imageView: ImageView? = null
         var textView1: TextView? = null
         var textView2: TextView? = null
