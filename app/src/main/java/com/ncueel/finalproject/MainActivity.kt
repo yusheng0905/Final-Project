@@ -33,10 +33,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var savebtn: Button
 
     //get variable
-    private lateinit var getname:TextView
+    lateinit var getname:TextView
     private lateinit var getprice:TextView
     private lateinit var getnumber:TextView
     private lateinit var getbtn: Button
+
+
+    //update variable
+//    private lateinit var upname:EditText
+//    private lateinit var upprice:EditText
+//    private lateinit var upnumber:EditText
+    private lateinit var upobject:EditText
+    private lateinit var updatebtn:Button
 
     //Retrieve Image
     private lateinit var getimage:ImageView
@@ -122,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         getbtn.setOnClickListener {
             val bb = DBhelper(this)
             //getdb(type)  type:1=name,2=price,3=number
-            getname.text = bb.getdb(1)
+//            bb.getdb(1)
 //            getprice.text = bb.get(2)
 //            getnumber.text = bb.get(3)
 
@@ -142,6 +150,16 @@ class MainActivity : AppCompatActivity() {
 //                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
 //                }
         }
+
+        //update items
+        upobject = findViewById(R.id.editTextText5)
+        updatebtn = findViewById(R.id.button7)
+
+        updatebtn.setOnClickListener {
+            val up = DBhelper(this)
+            up.update("number",upobject,"0001")
+        }
+
 
         //display image from db
 //        getimage = findViewById(R.id.imageView2)
