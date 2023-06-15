@@ -114,13 +114,26 @@ class DBhelper(private val context: Context) {
 //        )
         db.collection("test").document(doc_id).update(updateMap)
             .addOnSuccessListener{
-                Toast.makeText(context, "successfully added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "successfully update", Toast.LENGTH_SHORT).show()
                 up_object.text.clear()
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
+
+    fun deleteCart(personID:String,cartPid:String){
+        db.collection(personID).document("cart")
+            .collection("cartInfo").document(cartPid)
+            .delete()
+            .addOnSuccessListener{
+                Toast.makeText(context, "successfully delete", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 //    private lateinit var getdbname:TextView
 //    private lateinit var getdbprice:TextView
 //    private lateinit var getdbnumber:TextView

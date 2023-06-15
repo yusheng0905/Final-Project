@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.ncueel.finalproject.databinding.FragmentMemberBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,12 +54,34 @@ class memberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //設計logout button功能
+        //Step 2-1: 初始化FirebaseAuth->初始化auth
+        auth = Firebase.auth
         val logout = view.findViewById<Button>(R.id.button3)
         logout.setOnClickListener {
             auth.signOut()
             val intent = Intent(requireContext(),MainActivity::class.java)
             startActivity(intent)
         }
+
+        //查看訂單
+        val checkOrders = view.findViewById<TextView>(R.id.textView11)
+        checkOrders.setOnClickListener{
+            startActivity(Intent(requireContext(),MainActivityOrders::class.java))
+        }
+
+        //更改密碼
+        val changePassword = view.findViewById<TextView>(R.id.textView17)
+        changePassword.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivityChangePW::class.java))
+        }
+
+        //個人檔案
+        val memberInfo = view.findViewById<TextView>(R.id.textView18)
+        memberInfo.setOnClickListener {
+            startActivity(Intent(requireContext(), MainActivityMemberInfo::class.java))
+        }
+
+
     }
 
     companion object {

@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var upobject:EditText
     private lateinit var updatebtn:Button
 
+    //delete variable
+    private lateinit var deletebtn:Button
+
     //Retrieve Image
     private lateinit var getimage:ImageView
     private lateinit var databaseReference: DatabaseReference
@@ -160,6 +163,14 @@ class MainActivity : AppCompatActivity() {
             up.update("number",upobject,"0001")
         }
 
+        //delete cart pid
+        deletebtn = findViewById(R.id.button11)
+        deletebtn.setOnClickListener{
+            val del = DBhelper(this)
+            del.deleteCart("test","pid3")
+        }
+
+
 
         //display image from db
 //        getimage = findViewById(R.id.imageView2)
@@ -187,6 +198,7 @@ class MainActivity : AppCompatActivity() {
                     println("---------signInWithEmail:success-----------")
                     val user = auth.currentUser
                     updateUI(user)
+                    startActivity(Intent(this,MainActivity_Home::class.java))
                 } else {
                     it.exception?.message?.let {  }
                     println("---------error---------------")
@@ -194,7 +206,6 @@ class MainActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
-        startActivity(Intent(this,MainActivity_Home::class.java))
     }
 
     //Step 6: 確認更新登入的user狀況
