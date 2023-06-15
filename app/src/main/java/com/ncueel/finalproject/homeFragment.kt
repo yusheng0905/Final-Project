@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.GridView
 import android.widget.TextView
 import android.widget.Toast
@@ -100,7 +101,28 @@ class homeFragment : Fragment() {
                 dialog.findViewById<TextView>(R.id.textView12)?.text = goodsNames[i]
                 dialog.findViewById<TextView>(R.id.textView13)?.text = goodsPrices[i]
                 dialog.findViewById<TextView>(R.id.textView15)?.text = goodsNumbers[i]
+
+                val selSub = dialog.findViewById<Button>(R.id.button8)
+                val selAdd = dialog.findViewById<Button>(R.id.button9)
+                var selNum = dialog.findViewById<TextView>(R.id.textView16)?.text.toString().toInt()
+
                 dialog.show()
+
+                selSub?.setOnClickListener{
+                    if(selNum > 1) {
+                        selNum -= 1
+                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    }
+                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                }
+
+                selAdd?.setOnClickListener{
+                    if(selNum < goodsNumbers[i].toInt()) {
+                        selNum += 1
+                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    }
+                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                }
             }
         }
         .addOnFailureListener {
