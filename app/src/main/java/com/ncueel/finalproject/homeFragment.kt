@@ -93,6 +93,7 @@ class homeFragment : Fragment() {
             gridView.adapter = customAdapter
             gridView.setOnItemClickListener { _, _, i, _ ->
                 //Toast.makeText(context, "${goodsPIds[i]}",Toast.LENGTH_SHORT).show()
+                //顯示所選擇商品的資訊
                 val dialogView = layoutInflater.inflate(R.layout.bottom_sheet, null)
                 val dialog = BottomSheetDialog(requireContext())
 
@@ -104,24 +105,36 @@ class homeFragment : Fragment() {
 
                 val selSub = dialog.findViewById<Button>(R.id.button8)
                 val selAdd = dialog.findViewById<Button>(R.id.button9)
-                var selNum = dialog.findViewById<TextView>(R.id.textView16)?.text.toString().toInt()
+                val addToCart = dialog.findViewById<Button>(R.id.button10)
+                var selNum = dialog.findViewById<TextView>(R.id.textView16)?.text
+                var selNumm = selNum.toString().toInt()
 
                 dialog.show()
 
                 selSub?.setOnClickListener{
-                    if(selNum > 1) {
-                        selNum -= 1
-                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    if(selNumm > 1) {
+                        selNumm -= 1
+                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNumm}"
                     }
-                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNumm}"
                 }
 
                 selAdd?.setOnClickListener{
-                    if(selNum < goodsNumbers[i].toInt()) {
-                        selNum += 1
-                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    if(selNumm < goodsNumbers[i].toInt()) {
+                        selNumm += 1
+                        dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNumm}"
                     }
-                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNum}"
+                    else dialog.findViewById<TextView>(R.id.textView16)?.text = "${selNumm}"
+                }
+
+                if (goodsNumbers[i].toInt() == 0){
+                    addToCart?.isEnabled = false
+                    //addToCart?.back
+                }
+
+                addToCart?.setOnClickListener {
+                    val callDB = DBhelper(requireContext())
+                    callDB.searchCart(goodsNames[i], goodsPrices[i], selNumm.toString(), goodsPIds[i])
                 }
             }
         }
