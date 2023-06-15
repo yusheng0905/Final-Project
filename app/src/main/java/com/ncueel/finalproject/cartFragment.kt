@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.GridView
+import android.widget.ListView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,6 +24,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class cartFragment : Fragment() {
+    private var db = Firebase.firestore
+    private val UserId = FirebaseAuth.getInstance().currentUser!!.uid
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,6 +44,60 @@ class cartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val goodsNames = ArrayList<String>()
+        val goodsPrices = ArrayList<String>()
+        val goodsSelNums = ArrayList<String>()
+        val goodsImageIds = ArrayList<String>()
+        val goodsPIds = ArrayList<String>()
+        val goodsNumbers = ArrayList<String>()
+        val listView = view.findViewById<ListView>(R.id.listView)
+        //get用戶購物車資料
+        db.collection(UserId).document("cart").collection("cartInfo")
+            .get().addOnSuccessListener {
+                for(goodsDoc in it) {
+                    val name = goodsDoc?.get("name").toString()
+                    val price = goodsDoc?.get("price").toString()
+                    val selNum = goodsDoc?.get("number").toString()
+                    val pictureUrl = goodsDoc?.get("pictureUrl").toString()
+                    val productId = goodsDoc?.id.toString()
+
+                    goodsNames.add(name)
+                    goodsPrices.add(price)
+                    goodsSelNums.add(selNum)
+                    goodsImageIds.add(pictureUrl)
+                    goodsPIds.add(productId)
+                }
+            }
+
+        //更新可買數量
+        db.collection("goods").get().addOnSuccessListener {
+            for(goodsDoc in it) {
+                val number = goodsDoc?.get("number").toString()
+                val productId = goodsDoc?.id.toString()
+
+                for(i in goodsNames.indices){
+                    if(productId == goodsPIds[i]){
+                        goodsNumbers.add(number)
+                    }
+                }
+            }
+            val customAdapter = CustomAdapterCart(requireContext(), goodsImageIds, goodsNames, goodsPrices, goodsNumbers, goodsSelNums, goodsPIds)
+            listView.adapter = customAdapter
+            val goCheckout = view.findViewById<Button>(R.id.button16)
+            goCheckout.setOnClickListener {
+                if(goodsPIds.isEmpty()) {
+                    Toast.makeText(context, "購物車是空的!", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(context, "goCheckout!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     companion object {

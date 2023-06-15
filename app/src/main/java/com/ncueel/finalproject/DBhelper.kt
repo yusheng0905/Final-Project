@@ -15,7 +15,7 @@ class DBhelper(private val context: Context) {
     private val db = Firebase.firestore
     private val UserId = FirebaseAuth.getInstance().currentUser!!.uid
 
-    fun searchCart(name: String, price: String, number: String, pId: String){
+    fun searchCart(name: String, price: String, number: String, pId: String, imageId: String){
         db.collection(UserId).document("cart").collection("cartInfo")
             .get().addOnSuccessListener {
                 var chkVar = false
@@ -27,19 +27,20 @@ class DBhelper(private val context: Context) {
                     }
                 }
                 if (chkVar) {}
-                else saveCart(name, price, number, pId)
+                else saveCart(name, price, number, pId, imageId)
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
 
-    private fun saveCart(name: String, price: String, number: String, pId: String) {
+    private fun saveCart(name: String, price: String, number: String, pId: String, imageId: String) {
 
         val goodsMap = hashMapOf(
             "name" to name,
             "price" to price,
-            "number" to number
+            "number" to number,
+            "pictureUrl" to imageId
         )
 
         db.collection(UserId).document("cart").collection("cartInfo").document(pId).set(goodsMap)
@@ -58,7 +59,7 @@ class DBhelper(private val context: Context) {
 
         db.collection(UserId).document("cart").collection("cartInfo").document(pId).update(updateMap)
             .addOnSuccessListener{
-                Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
                 Toast.makeText(context, "操作失敗", Toast.LENGTH_SHORT).show()
@@ -122,12 +123,12 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun deleteCart(personID:String,cartPid:String){
-        db.collection(personID).document("cart")
-            .collection("cartInfo").document(cartPid)
+    fun deleteCart(pId:String){
+        db.collection(UserId).document("cart")
+            .collection("cartInfo").document(pId)
             .delete()
             .addOnSuccessListener{
-                Toast.makeText(context, "successfully delete", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "刪除成功", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()

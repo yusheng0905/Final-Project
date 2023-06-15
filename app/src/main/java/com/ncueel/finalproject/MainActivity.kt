@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         deletebtn = findViewById(R.id.button11)
         deletebtn.setOnClickListener{
             val del = DBhelper(this)
-            del.deleteCart("test","pid3")
+            del.deleteCart("pid3")
         }
 
 

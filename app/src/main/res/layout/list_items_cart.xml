@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_margin="5dp"
         app:srcCompat="@drawable/background" />
 
@@ -16,7 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/imageView3"
-        android:layout_margin="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
         android:text="TextView"
         android:textSize="20sp" />
 
@@ -39,7 +40,7 @@
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/imageView3"
         android:layout_below="@+id/textView24"
-        android:text="剩餘數量:"
+        android:text="可買數量:"
         android:textSize="16sp" />
 
     <TextView
@@ -58,7 +59,7 @@
         android:layout_marginStart="5dp"
         android:layout_gravity="center"
         android:layout_toEndOf="@id/imageView3"
-        android:layout_alignBottom="@id/imageView3"
+        android:layout_below="@+id/textView25"
         android:backgroundTint="@color/third"
         android:text="-"
         android:textColor="@color/black"
@@ -67,11 +68,11 @@
     <TextView
         android:id="@+id/textView27"
         android:layout_width="70dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_toEndOf="@id/button12"
-        android:layout_alignBottom="@id/imageView3"
-        android:background="@color/first"
+        android:layout_below="@+id/textView25"
+        android:background="@drawable/my_textview"
         android:layout_marginStart="5dp"
         android:textAlignment="center"
         android:gravity="center"
@@ -85,15 +86,22 @@
         android:layout_marginStart="5dp"
         android:layout_gravity="center"
         android:layout_toEndOf="@id/textView27"
-        android:layout_alignBottom="@id/imageView3"
+        android:layout_below="@+id/textView25"
         android:backgroundTint="@color/third"
         android:text="+"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button14"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:layout_toEndOf="@id/button13"
+        android:layout_below="@+id/textView25"
+        android:background="@drawable/my_textview_del"
+        android:src="@drawable/baseline_delete_24" />
 </RelativeLayout>

@@ -134,7 +134,7 @@ class homeFragment : Fragment() {
 
                 addToCart?.setOnClickListener {
                     val callDB = DBhelper(requireContext())
-                    callDB.searchCart(goodsNames[i], goodsPrices[i], selNumm.toString(), goodsPIds[i])
+                    callDB.searchCart(goodsNames[i], goodsPrices[i], selNumm.toString(), goodsPIds[i], goodsImageIds[i])
                 }
             }
         }
