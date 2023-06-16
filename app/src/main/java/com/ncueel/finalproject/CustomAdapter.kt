@@ -44,7 +44,7 @@ class CustomAdapter(private val context: Context, private val data: ArrayList<St
         val item3 = data3[position]
 
         viewHolder.textView1?.text = item
-        viewHolder.textView2?.text = item2
+        viewHolder.textView2?.text = "$${item2}"
 
         Picasso.get()
             .load(item3)

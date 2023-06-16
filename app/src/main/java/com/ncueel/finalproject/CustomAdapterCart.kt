@@ -54,7 +54,7 @@ class CustomAdapterCart(private val context: Context, private val imageId: Array
         }
 
         viewHolder.textView1?.text = name[position]
-        viewHolder.textView2?.text = price[position]
+        viewHolder.textView2?.text = "$${price[position]}"
         viewHolder.textView3?.text = number[position]
         viewHolder.textView4?.text = selNum[position]
 

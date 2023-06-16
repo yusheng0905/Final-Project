@@ -83,7 +83,7 @@ class homeFragment : Fragment() {
                 val productId = goodsDoc?.id.toString()
 
                 goodsNames.add(name)
-                goodsPrices.add("$${price}")
+                goodsPrices.add(price)
                 goodsNumbers.add(number)
                 goodsImageIds.add(pictureUrl)
                 goodsPIds.add(productId)
@@ -100,7 +100,7 @@ class homeFragment : Fragment() {
                 dialog.setContentView(dialogView)
                 Picasso.get().load(goodsImageIds[i]).into(dialog.findViewById(R.id.imageView2))
                 dialog.findViewById<TextView>(R.id.textView12)?.text = goodsNames[i]
-                dialog.findViewById<TextView>(R.id.textView13)?.text = goodsPrices[i]
+                dialog.findViewById<TextView>(R.id.textView13)?.text = "$${goodsPrices[i]}"
                 dialog.findViewById<TextView>(R.id.textView15)?.text = goodsNumbers[i]
 
                 val selSub = dialog.findViewById<Button>(R.id.button8)

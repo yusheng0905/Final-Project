@@ -66,6 +66,101 @@ class DBhelper(private val context: Context) {
             }
     }
 
+    fun refreshCart(number:String, pId:String){
+        var updateMap = mutableMapOf<String,Any>()
+
+        updateMap = hashMapOf("number" to number)
+
+        db.collection(UserId).document("cart").collection("cartInfo").document(pId).update(updateMap)
+            .addOnSuccessListener{
+                //Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "操作失敗", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun deleteCart(pId:String){
+        db.collection(UserId).document("cart")
+            .collection("cartInfo").document(pId)
+            .delete()
+            .addOnSuccessListener{
+                //Toast.makeText(context, "刪除成功", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun saveOrderInfo(time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
+
+        val goodsMap = hashMapOf(
+            "time" to time,
+            "userName" to userName,
+            "phone" to phone,
+            "address" to address,
+            "amount" to amount,
+            "delivery" to delivery,
+            "payment" to payment
+        )
+
+        db.collection(UserId).document("order").collection("order").document(time)
+            .collection("orderInfo").document("orderInfo").set(goodsMap).addOnSuccessListener {
+                Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun saveOrderGoods(time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
+
+        val goodsMap = hashMapOf(
+            "time" to time,
+            "pId" to pId,
+            "name" to name,
+            "selNum" to selNum,
+            "price" to price,
+            "imageUrl" to imageUrl
+        )
+
+        db.collection(UserId).document("order").collection("order").document(time)
+            .collection("orderContent").document(pId).set(goodsMap).addOnSuccessListener {
+                //Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                //Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun refreshGoods(pId: ArrayList<String>, selNum: ArrayList<String>){
+        var updateMap = mutableMapOf<String,Any>()
+        val goodsNumbers = ArrayList<String>()
+
+        //更新可買數量
+        db.collection("goods").get().addOnSuccessListener {
+            for (goodsDoc in it) {
+                val number = goodsDoc?.get("number").toString()
+                val productId = goodsDoc?.id.toString()
+
+                for (i in pId.indices) {
+                    if (productId == pId[i]) {
+                        goodsNumbers.add(number)
+                        updateMap = hashMapOf("number" to (number.toInt() - selNum[i].toInt()).toString())
+
+                        db.collection("goods").document(pId[i]).update(updateMap)
+                            .addOnSuccessListener{
+                                //Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(context, "操作失敗", Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                }
+            }
+        }
+    }
+
     fun save(name: EditText, price: EditText, number: EditText) {
         //刪除前後空格 trim()
         val sName = name.text.toString().trim()
@@ -123,17 +218,7 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun deleteCart(pId:String){
-        db.collection(UserId).document("cart")
-            .collection("cartInfo").document(pId)
-            .delete()
-            .addOnSuccessListener{
-                Toast.makeText(context, "刪除成功", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-            }
-    }
+
 
 //    private lateinit var getdbname:TextView
 //    private lateinit var getdbprice:TextView

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.firestore.ktx.firestore
 import com.ncueel.finalproject.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,8 +17,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
 
         //** Step 2: 去設定我們要去啟動的RegisterActivity **
         //Step 2-1: 初始化FirebaseAuth->初始化auth

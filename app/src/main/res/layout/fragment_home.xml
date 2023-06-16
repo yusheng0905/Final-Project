@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,42 +7,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".homeFragment">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="ROhouse48h"
+        android:background="@color/first"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView2">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:text="ROhouse48h"
-            android:background="@color/first"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
-
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/imageSlider"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_below="@+id/textView2"
-            android:background="@drawable/background"
-            app:iss_auto_cycle="true"
-            app:iss_delay="2000"
-            app:iss_period="2000"
-            app:iss_text_align="CENTER" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <GridView
-            android:id="@+id/gridView"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
-            android:layout_below="@+id/imageSlider"
-            android:nestedScrollingEnabled="true"
-            android:numColumns="2" />
-    </RelativeLayout>
 
-</androidx.core.widget.NestedScrollView>
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:background="@drawable/background"
+                app:iss_auto_cycle="true"
+                app:iss_delay="2000"
+                app:iss_period="2000"
+                app:iss_text_align="CENTER" />
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="800dp"
+                android:layout_below="@+id/imageSlider"
+                android:layout_alignParentBottom="true"
+                android:nestedScrollingEnabled="true"
+                android:numColumns="2" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

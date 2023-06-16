@@ -1,12 +1,12 @@
 package com.ncueel.finalproject
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.GridView
 import android.widget.ListView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +49,8 @@ class cartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val callDB = DBhelper(requireContext())
+
         val goodsNames = ArrayList<String>()
         val goodsPrices = ArrayList<String>()
         val goodsSelNums = ArrayList<String>()
@@ -86,6 +88,10 @@ class cartFragment : Fragment() {
                     }
                 }
             }
+            for(i in goodsSelNums.indices){
+                if(goodsSelNums[i].toInt() > goodsNumbers[i].toInt()) goodsSelNums[i] = goodsNumbers[i]
+                callDB.refreshCart(goodsSelNums[i], goodsPIds[i])
+            }
             val customAdapter = CustomAdapterCart(requireContext(), goodsImageIds, goodsNames, goodsPrices, goodsNumbers, goodsSelNums, goodsPIds)
             listView.adapter = customAdapter
             val goCheckout = view.findViewById<Button>(R.id.button16)
@@ -94,7 +100,8 @@ class cartFragment : Fragment() {
                     Toast.makeText(context, "購物車是空的!", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    Toast.makeText(context, "goCheckout!", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "goCheckout!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(context, MainActivityCheckout::class.java))
                 }
             }
         }
