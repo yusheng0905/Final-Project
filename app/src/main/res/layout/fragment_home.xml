@@ -41,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="800dp"
             android:layout_below="@+id/imageSlider"
-            android:layout_marginTop="-1dp"
             android:nestedScrollingEnabled="true"
             android:numColumns="2" />
     </RelativeLayout>
