@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class OrderAdapter(private val context: Context, private val data4: ArrayList<String>):BaseAdapter(){
+class OrderAdapter(private val context: Context, private val data4: ArrayList<String>,private val data5: ArrayList<String>):BaseAdapter(){
     override fun getCount(): Int {
         return data4.size
     }
@@ -38,8 +38,9 @@ class OrderAdapter(private val context: Context, private val data4: ArrayList<St
 //        val item2 = data2[position]
 //        val item3 = data3[position]
         val item4 = data4[position]
+        val item5 = data5[position]
 
-        viewHolder.textView1?.text = item4
+        viewHolder.textView1?.text = item4+"總金額："+item5
 
         return view
     }
