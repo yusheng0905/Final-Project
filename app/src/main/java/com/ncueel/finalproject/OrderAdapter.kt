@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 
 class OrderAdapter(private val context: Context, private val data4: ArrayList<String>):BaseAdapter(){
@@ -34,11 +33,8 @@ class OrderAdapter(private val context: Context, private val data4: ArrayList<St
             view = convertView
             viewHolder = view.tag as ViewHolder
         }
-//        val item = data[position]
-//        val item2 = data2[position]
-//        val item3 = data3[position]
+
         val item4 = data4[position]
-//        val item5 = data5[position]
 
         viewHolder.textView1?.text = "訂單${position+1} :  "+item4
 

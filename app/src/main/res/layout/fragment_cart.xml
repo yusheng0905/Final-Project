@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".cartFragment">
 
-
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -40,6 +38,5 @@
         android:backgroundTint="#990000"
         android:text="前往結帳"
         android:textStyle="bold" />
-
 
 </RelativeLayout>

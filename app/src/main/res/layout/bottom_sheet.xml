@@ -114,7 +114,7 @@
                 android:backgroundTint="@color/first"
                 android:text="加入購物車"
                 android:textColor="@color/black"/>
+
         </LinearLayout>
     </RelativeLayout>
-
 </LinearLayout>

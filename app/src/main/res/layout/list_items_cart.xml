@@ -104,4 +104,5 @@
         android:layout_below="@+id/textView25"
         android:background="@drawable/my_textview_del"
         android:src="@drawable/baseline_delete_24" />
+
 </RelativeLayout>

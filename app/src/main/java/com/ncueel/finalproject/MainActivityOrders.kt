@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -32,11 +31,16 @@ class MainActivityOrders : AppCompatActivity() {
             val orderAdapter = OrderAdapter(this, orderOid)
             ListView1.adapter = orderAdapter
             ListView1.setOnItemClickListener { _, _, i, _ ->
+                var orderNames = ArrayList<String>()
+                var orderSelNums = ArrayList<String>()
+                var orderPrices = ArrayList<String>()
+                var orderImages = ArrayList<String>()
                 val dialogView = layoutInflater.inflate(R.layout.order_buttom_sheet, null)
                 val dialog = BottomSheetDialog(this)
 
                 dialog.setContentView(dialogView)
                 val orderInfomation = dialog.findViewById<TextView>(R.id.textView40)
+                val listView = dialog.findViewById<ListView>(R.id.ListView4)
                 orderQuery.document(orderOid[i]).collection("orderInfo").get().addOnSuccessListener{inner->
                     for(info in inner){
                         val address = info?.get("address").toString()
@@ -57,31 +61,38 @@ class MainActivityOrders : AppCompatActivity() {
                                                 "總金額： NT$"+amount+"\n"
                     }
                 }
-                orderQuery.document(orderOid[i]).collection("orderContent").get().addOnSuccessListener { inner ->
-                    for(info in inner)  {
+                orderQuery.document(orderOid[i]).collection("orderContent").get().addOnSuccessListener { innerr ->
+                    for(info in innerr)  {
                         val name = info?.get("name").toString()
                         val selNum = info?.get("selNum").toString()
+                        val price = info?.get("price").toString()
+                        val image = info?.get("imageUrl").toString()
+
+                        orderNames.add(name)
+                        orderSelNums.add(selNum)
+                        orderPrices.add(price)
+                        orderImages.add(image)
                     }
+                    val customAdapter = CustomAdapterCheckout(this, orderImages, orderNames, orderPrices, orderSelNums)
+                    listView?.adapter = customAdapter
+                    MainActivityCheckout.ListViewUtils.setListViewHeightBasedOnItems(listView!!)
                 }
 
                 dialog.show()
+            }
+
+            /*
+        goodsQuery.document("oid").collection("orderInfo").get().addOnSuccessListener {
+            for (orderinfo in it) {
+                val amount = orderinfo?.get("amount").toString()
+                totalAmount.add(amount)
+            }
+            totalAmount.add("2")
+            totalAmount.add("3")
+
+            }
+            */
         }
-
-//        goodsQuery.document("oid").collection("orderInfo").get().addOnSuccessListener {
-//            for (orderinfo in it) {
-//                val amount = orderinfo?.get("amount").toString()
-//                totalAmount.add(amount)
-//            }
-//            totalAmount.add("2")
-//            totalAmount.add("3")
-//
-//            }
-        }
-
-
-
-
-
     }
 }
 

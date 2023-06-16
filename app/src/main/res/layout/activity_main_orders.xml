@@ -1,39 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivityOrders">
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="我的訂單"
+        android:background="@color/third"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/ListView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView29"
+        android:nestedScrollingEnabled="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold">
 
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:text="我的訂單"
-            android:background="@color/third"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+    </ListView>
 
-        <ListView
-            android:id="@+id/ListView1"
-            android:layout_width="match_parent"
-            android:layout_height="800dp"
-            android:layout_below="@+id/textView29"
-            android:nestedScrollingEnabled="true"
-            android:layout_centerHorizontal="true"
-            android:textStyle="bold">
-
-        </ListView>
-
-
-    </RelativeLayout>
-
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.ncueel.finalproject
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.squareup.picasso.Picasso
 
 class CustomAdapterCart(private val context: Context, private val imageId: ArrayList<String>,
@@ -60,6 +57,7 @@ class CustomAdapterCart(private val context: Context, private val imageId: Array
 
         Picasso.get().load(imageId[position]).into(viewHolder.imageView)
 
+        //按下減號
         viewHolder.button?.setOnClickListener {
             if(selNum[position].toInt()>1) {
                 selNum[position] = (selNum[position].toInt() - 1).toString()
@@ -68,6 +66,7 @@ class CustomAdapterCart(private val context: Context, private val imageId: Array
             }
         }
 
+        //按下加號
         viewHolder.button2?.setOnClickListener {
             if(selNum[position].toInt()<number[position].toInt()) {
                 selNum[position] = (selNum[position].toInt() + 1).toString()
@@ -76,6 +75,7 @@ class CustomAdapterCart(private val context: Context, private val imageId: Array
             }
         }
 
+        //按下刪除
         viewHolder.button3?.setOnClickListener {
             callDB.deleteCart(pId[position])
             imageId.removeAt(position)
