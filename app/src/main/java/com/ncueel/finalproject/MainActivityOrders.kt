@@ -28,7 +28,7 @@ class MainActivityOrders : AppCompatActivity() {
                 orderOid.add(oid)
 
             }
-            Toast.makeText(this,"${orderOid}",Toast.LENGTH_SHORT).show()
+
             val orderAdapter = OrderAdapter(this, orderOid)
             ListView1.adapter = orderAdapter
             ListView1.setOnItemClickListener { _, _, i, _ ->
@@ -55,6 +55,12 @@ class MainActivityOrders : AppCompatActivity() {
                                                 "付款方式："+payment+"\n"+
                                                 "訂購時間："+time+"\n\n"+
                                                 "總金額： NT$"+amount+"\n"
+                    }
+                }
+                orderQuery.document(orderOid[i]).collection("orderContent").get().addOnSuccessListener { inner ->
+                    for(info in inner)  {
+                        val name = info?.get("name").toString()
+                        val selNum = info?.get("selNum").toString()
                     }
                 }
 
