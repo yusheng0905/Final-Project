@@ -37,9 +37,6 @@ class MainActivityOrders : AppCompatActivity() {
             }
             textForStore.text = goodsOid.toString()
         }
-//        goodsOid.add("oid")
-//        goodsOid.add("oid2")
-//        goodsOid.add("oid3")
 
         goodsQuery.document("oid").collection("orderInfo").get().addOnSuccessListener {
             for (orderinfo in it) {
@@ -55,6 +52,9 @@ class MainActivityOrders : AppCompatActivity() {
                 val dialog = BottomSheetDialog(this)
 
                 dialog.setContentView(dialogView)
+                val orderInfomation = dialog.findViewById<TextView>(R.id.textView40)
+
+                orderInfomation?.text = i.toString()
 
                 dialog.show()
             }
