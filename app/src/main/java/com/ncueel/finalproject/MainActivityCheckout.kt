@@ -111,7 +111,7 @@ class MainActivityCheckout : AppCompatActivity() {
                             callDB.deleteCart(goodsPIds[i])
                         }
                         callDB.refreshGoods(goodsPIds, goodsSelNums)
-                        startActivity(Intent(this, MainActivityOrders::class.java))
+                        startActivity(Intent(this, MainActivityOrderSuccess::class.java))
                     }
                 }
             }
