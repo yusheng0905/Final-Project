@@ -66,6 +66,7 @@ class DBhelper(private val context: Context) {
             }
     }
 
+
     fun save(name: EditText, price: EditText, number: EditText) {
         //刪除前後空格 trim()
         val sName = name.text.toString().trim()

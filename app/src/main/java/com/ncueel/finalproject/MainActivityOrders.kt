@@ -2,9 +2,10 @@ package com.ncueel.finalproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.GridView
 import android.widget.ListView
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.widget.TextView
+import android.widget.Toast
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -13,15 +14,16 @@ class MainActivityOrders : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_orders)
-
+        val textForStore = findViewById<TextView>(R.id.textView8)
         val ListView1 = findViewById<ListView>(R.id.ListView1)
         val goodsNames = ArrayList<String>()
         val goodsPrices = ArrayList<String>()
         val goodsNumbers = ArrayList<String>()
-        val goodsOid = ArrayList<String>()
+        var goodsOid = ArrayList<String>()
+        val totalAmount = ArrayList<String>()
         val goodsQuery = db.collection("test").document("order").collection("order")
         goodsQuery.get().addOnSuccessListener {
-            for(oiddoc in it){
+            for (oiddoc in it) {
                 val oid = oiddoc?.id.toString()
                 goodsOid.add(oid)
 
@@ -33,25 +35,43 @@ class MainActivityOrders : AppCompatActivity() {
 //                goodsPrices.add("$${price}")
 //                goodsNumbers.add(number)
             }
-            val orderAdapter = OrderAdapter(this, goodsOid)
+            textForStore.text = goodsOid.toString()
+        }
+//        goodsOid.add("oid")
+//        goodsOid.add("oid2")
+//        goodsOid.add("oid3")
+
+        goodsQuery.document("oid").collection("orderInfo").get().addOnSuccessListener {
+            for (orderinfo in it) {
+                val amount = orderinfo?.get("amount").toString()
+                totalAmount.add(amount)
+            }
+            totalAmount.add("2")
+            totalAmount.add("3")
+            val orderAdapter = OrderAdapter(this, goodsOid,totalAmount)
             ListView1.adapter = orderAdapter
+            ListView1.setOnItemClickListener { _, _, i, _ ->
+                val dialogView = layoutInflater.inflate(R.layout.order_buttom_sheet, null)
+                val dialog = BottomSheetDialog(this)
+
+                dialog.setContentView(dialogView)
+
+                dialog.show()
+            }
         }
 
 
-//        goodsQuery.document().collection().get().addOnSuccessListener {
-//            for(item in it){
-//                val name = item?.get("name").toString()
-//                val price = item?.get("price").toString()
-//                val number = item?.get("number").toString()
+
+//        goodsQuery.get().addOnSuccessListener {
 //
-//                goodsNames.add(name)
-//                goodsPrices.add("$${price}")
-//                goodsNumbers.add(number)
-//            }
 //        }
 
-//        goodsQuery.get().addOnSuccessListener{
-//            val orderAdapter = OrderAdapter(this, goodsNames, goodsPrices, goodsNumbers,goodsOid)
-//            ListView1.adapter = orderAdapter
-        }
     }
+}
+
+
+
+
+
+
+
