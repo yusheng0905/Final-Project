@@ -94,6 +94,7 @@ class DBhelper(private val context: Context) {
 
     fun saveOrderInfo(oId: String, time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
 
+        val nullMap = hashMapOf<String, Any>()
         val goodsMap = hashMapOf(
             "time" to time,
             "userName" to userName,
@@ -105,8 +106,16 @@ class DBhelper(private val context: Context) {
         )
 
         db.collection(UserId).document("order").collection("order").document(oId)
-            .collection("orderInfo").document("orderInfo").set(goodsMap).addOnSuccessListener {
+            .set(nullMap).addOnSuccessListener {
                 Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            }
+
+        db.collection(UserId).document("order").collection("order").document(oId)
+            .collection("orderInfo").document("orderInfo").set(goodsMap).addOnSuccessListener {
+                //Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
