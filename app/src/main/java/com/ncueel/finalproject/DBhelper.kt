@@ -94,6 +94,7 @@ class DBhelper(private val context: Context) {
 
     fun saveOrderInfo(time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
 
+        val oId = (Integer.parseInt(time)).toString()
         val goodsMap = hashMapOf(
             "time" to time,
             "userName" to userName,
@@ -104,7 +105,7 @@ class DBhelper(private val context: Context) {
             "payment" to payment
         )
 
-        db.collection(UserId).document("order").collection("order").document(time)
+        db.collection(UserId).document("order").collection("order").document(oId)
             .collection("orderInfo").document("orderInfo").set(goodsMap).addOnSuccessListener {
                 Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
@@ -115,6 +116,7 @@ class DBhelper(private val context: Context) {
 
     fun saveOrderGoods(time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
 
+        val oId = (Integer.parseInt(time)).toString()
         val goodsMap = hashMapOf(
             "time" to time,
             "pId" to pId,
@@ -124,7 +126,7 @@ class DBhelper(private val context: Context) {
             "imageUrl" to imageUrl
         )
 
-        db.collection(UserId).document("order").collection("order").document(time)
+        db.collection(UserId).document("order").collection("order").document(oId)
             .collection("orderContent").document(pId).set(goodsMap).addOnSuccessListener {
                 //Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
