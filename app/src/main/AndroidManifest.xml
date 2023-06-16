@@ -30,9 +30,6 @@
             android:name=".MainActivityOrders"
             android:exported="false" />
         <activity
-            android:name=".DBhelper"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity_Home"
             android:exported="false" />
         <activity
