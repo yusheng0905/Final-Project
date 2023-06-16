@@ -37,19 +37,19 @@ class MainActivityOrders : AppCompatActivity() {
             ListView1.adapter = orderAdapter
         }
 
-//        for(i in goodsOid){
-//            goodsQuery.document(i).collection(i).get().addOnSuccessListener {
-//                for(item in it){
-//                    val name = item?.get("name").toString()
-//                    val price = item?.get("price").toString()
-//                    val number = item?.get("number").toString()
+
+//        goodsQuery.document().collection().get().addOnSuccessListener {
+//            for(item in it){
+//                val name = item?.get("name").toString()
+//                val price = item?.get("price").toString()
+//                val number = item?.get("number").toString()
 //
-//                    goodsNames.add(name)
-//                    goodsPrices.add("$${price}")
-//                    goodsNumbers.add(number)
-//                }
+//                goodsNames.add(name)
+//                goodsPrices.add("$${price}")
+//                goodsNumbers.add(number)
 //            }
 //        }
+
 //        goodsQuery.get().addOnSuccessListener{
 //            val orderAdapter = OrderAdapter(this, goodsNames, goodsPrices, goodsNumbers,goodsOid)
 //            ListView1.adapter = orderAdapter
