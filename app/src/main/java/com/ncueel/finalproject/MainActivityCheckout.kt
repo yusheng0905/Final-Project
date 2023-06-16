@@ -104,12 +104,10 @@ class MainActivityCheckout : AppCompatActivity() {
                     else{
                         val currentTime = Date()
                         val dateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.getDefault()) // 設定時間的格式
-                        val oIdFormat = SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault())
                         val formattedTime = dateFormat.format(currentTime) // 將時間格式化成字串
-                        val oId = oIdFormat.format(currentTime)
-                        callDB.saveOrderInfo(oId, formattedTime, userName, phone, address, amount.toString(), delivery, payment)
+                        callDB.saveOrderInfo(formattedTime, userName, phone, address, amount.toString(), delivery, payment)
                         for(i in goodsPIds.indices) {
-                            callDB.saveOrderGoods(oId, formattedTime, goodsPIds[i], goodsNames[i], goodsSelNums[i], goodsPrices[i], goodsImageIds[i])
+                            callDB.saveOrderGoods(formattedTime, goodsPIds[i], goodsNames[i], goodsSelNums[i], goodsPrices[i], goodsImageIds[i])
                             callDB.deleteCart(goodsPIds[i])
                         }
                         callDB.refreshGoods(goodsPIds, goodsSelNums)

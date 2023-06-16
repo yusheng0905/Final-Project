@@ -92,7 +92,7 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun saveOrderInfo(oId: String, time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
+    fun saveOrderInfo(time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
 
         val nullMap = hashMapOf<String, Any>()
         val goodsMap = hashMapOf(
@@ -105,7 +105,7 @@ class DBhelper(private val context: Context) {
             "payment" to payment
         )
 
-        db.collection(UserId).document("order").collection("order").document(oId)
+        db.collection(UserId).document("order").collection("order").document(time)
             .set(nullMap).addOnSuccessListener {
                 Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
@@ -113,7 +113,7 @@ class DBhelper(private val context: Context) {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
             }
 
-        db.collection(UserId).document("order").collection("order").document(oId)
+        db.collection(UserId).document("order").collection("order").document(time)
             .collection("orderInfo").document("orderInfo").set(goodsMap).addOnSuccessListener {
                 //Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
@@ -122,7 +122,7 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun saveOrderGoods(oId: String, time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
+    fun saveOrderGoods(time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
 
         val goodsMap = hashMapOf(
             "time" to time,
@@ -133,7 +133,7 @@ class DBhelper(private val context: Context) {
             "imageUrl" to imageUrl
         )
 
-        db.collection(UserId).document("order").collection("order").document(oId)
+        db.collection(UserId).document("order").collection("order").document(time)
             .collection("orderContent").document(pId).set(goodsMap).addOnSuccessListener {
                 //Toast.makeText(context, "已送出訂單", Toast.LENGTH_SHORT).show()
             }
