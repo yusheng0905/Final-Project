@@ -92,9 +92,8 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun saveOrderInfo(time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
+    fun saveOrderInfo(oId: String, time: String, userName: String, phone: String, address: String, amount: String, delivery: String, payment: String) {
 
-        val oId = (Integer.parseInt(time)).toString()
         val goodsMap = hashMapOf(
             "time" to time,
             "userName" to userName,
@@ -114,9 +113,8 @@ class DBhelper(private val context: Context) {
             }
     }
 
-    fun saveOrderGoods(time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
+    fun saveOrderGoods(oId: String, time: String, pId: String, name: String, selNum: String, price: String, imageUrl: String) {
 
-        val oId = (Integer.parseInt(time)).toString()
         val goodsMap = hashMapOf(
             "time" to time,
             "pId" to pId,
